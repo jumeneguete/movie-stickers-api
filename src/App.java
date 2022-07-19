@@ -16,5 +16,10 @@ public class App {
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         String body = response.body();
 
+        //extrair dados (parse) - título, imagem, nota
+        JsonParser parser = new JsonParser();
+        List<Map<String, String>> movieList = parser.parse(body);
+
+       
     }
 }
