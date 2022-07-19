@@ -20,6 +20,13 @@ public class App {
         JsonParser parser = new JsonParser();
         List<Map<String, String>> movieList = parser.parse(body);
 
-       
+        //exibir dados
+
+        for (Map<String,String> movie : movieList) {
+            System.out.println(movie.get("title"));
+            System.out.println(movie.get("image"));
+            System.out.println(movie.get("imDbRating"));
+            System.out.println();
+        }
     }
 }
