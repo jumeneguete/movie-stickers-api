@@ -16,28 +16,20 @@ public class App {
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         String body = response.body();
 
-        //extrair dados (parse) - título, imagem, nota
+        // extrair dados (parse) - título, imagem, nota
         JsonParser parser = new JsonParser();
         List<Map<String, String>> movieList = parser.parse(body);
 
-        //exibir dados
-        for(int i = 0; i < movieList.size(); i++){
-             int position = i + 1;
+        // exibir dados
 
-            System.out.println("\u001b[35m" + position + ": " + "\u001b[1m \u001b[45m" + 
-                                movieList.get(i).get("title") + "\u001b[m");
+        for (int i = 0; i < movieList.size(); i++) {
+            System.out.println(i + 1 + ": " + movieList.get(i).get("title"));
+            System.out.println("Nota: " + movieList.get(i).get("imDbRating"));
+            System.out.println("Link da imagem: " + movieList.get(i).get("image"));
 
-            for ( int j = 1; j <= (int) Double.parseDouble(movieList.get(i).get("imDbRating")); j++){
-                System.out.print("⭐");
-            }                    
-
-            System.out.println();
-
-            System.out.println("\u001b[35m Nota: " + "\u001b[1m" + movieList.get(i).get("imDbRating") + "\u001b[m");
-            System.out.println("\u001b[34m Link da imagem: " + "\u001b[1m"  + movieList.get(i).get("image") + "\u001b[m");
-            
             System.out.println();
         }
-        
+
     }
 }
+
