@@ -3,16 +3,20 @@ import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
-
 public class StickerGenerator {
 
     public void generate() throws IOException {
         
         // leitura da imagem original
-        BufferedImage originalImage = ImageIO.read(new File("./entrada/filme.jpg"));
+        // InputStream lendo de um arquivo
+        InputStream inputStream = new FileInputStream(new File("./entrada/filme.jpg"));
+        BufferedImage originalImage = ImageIO.read(inputStream);
+
 
         // cria nova imagem com transparencia em memoria
         int width = originalImage.getWidth();
@@ -26,12 +30,14 @@ public class StickerGenerator {
 
         //configurar fonte
         Font font = new Font(Font.SANS_SERIF, Font.BOLD, 200);
-        graphics.setColor(Color.MAGENTA);
+        graphics.setColor(Color.ORANGE);
         graphics.setFont(font);
 
         // escreve frase na nova imagem
         String text = "TOPZERA";
-        graphics.drawString(text,  width/2 - text.length() * 50, newHeight - 90);
+        int textWidth = graphics.getFontMetrics().stringWidth(text);
+        int center = width/2 -  textWidth/2;
+        graphics.drawString(text, center, newHeight - 90);
 
         // escreve a nova imagem em um arquivo
         File outputDirectory = new File("./saida");
