@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 public class StickerGenerator {
@@ -14,7 +15,10 @@ public class StickerGenerator {
         
         // leitura da imagem original
         // InputStream lendo de um arquivo
-        InputStream inputStream = new FileInputStream(new File("./entrada/filme.jpg"));
+        // InputStream inputStream = new FileInputStream(new File("./entrada/filme.jpg"));
+        // InputStream lendo de uma URL
+        InputStream inputStream = new URL("https://m.media-amazon.com/images/M/MV5BMGEzN2VkMmUtMGM1Zi00Y2U1LTlkMDktMTlhMTdmYzZmZDlhXkEyXkFqcGdeQXVyODEyNjEwMDk@.jpg")
+                            .openStream(); //openStream, tipo "abra essa conexão e me retorne os bytes que estão lá"
         BufferedImage originalImage = ImageIO.read(inputStream);
 
 
