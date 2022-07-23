@@ -22,7 +22,7 @@ public class StickerGenerator {
         // cria nova imagem com transparencia em memoria
         int width = originalImage.getWidth();
         int height = originalImage.getHeight();
-        int newHeight = height + 25;
+        int newHeight = height + 300;
         BufferedImage transparentImage = new BufferedImage(width, newHeight, BufferedImage.TRANSLUCENT);
 
         // copia a imagem original para a nova imagem (em memoria)
@@ -30,7 +30,7 @@ public class StickerGenerator {
         graphics.drawImage(originalImage, 0, 0, null); // vai desenhar a imagem original sobre a transparente
 
         //configurar fonte
-        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 12);
+        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 200);
         graphics.setColor(Color.ORANGE);
         graphics.setFont(font);
 
@@ -43,10 +43,10 @@ public class StickerGenerator {
         } else {
             text = "BONZÃO";
         }
-        
+
         int textWidth = graphics.getFontMetrics().stringWidth(text);
         int center = width/2 -  textWidth/2;
-        graphics.drawString(text, center, newHeight - 10);
+        graphics.drawString(text, center, newHeight - 90);
 
         // escreve a nova imagem em um arquivo
         File outputDirectory = new File("./saida");

@@ -27,7 +27,8 @@ public class App {
   
         for (int i = 0; i < 40; i++) {
             // InputStream lendo de uma URL
-            String imageUrl = movieList.get(i).get("image");
+            String imageUrl = movieList.get(i).get("image")
+                    .replaceAll("(@+)(.*).jpg$", "$1.jpg");
             InputStream inputStream = new URL(imageUrl).openStream(); //openStream, tipo "abra essa conexão e me retorne os bytes que estão lá"
             String title = movieList.get(i).get("title");
             Double imDbRating = Double.parseDouble(movieList.get(i).get("imDbRating"));
