@@ -9,7 +9,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 public class StickerGenerator {
 
-    public void generate(InputStream inputStream, String title, Double rating) throws IOException {
+    public void generate(InputStream inputStream, String title) throws IOException {
         
         // leitura da imagem original
         // InputStream lendo de um arquivo
@@ -35,14 +35,14 @@ public class StickerGenerator {
         graphics.setFont(font);
 
         // escreve frase na nova imagem
-        String text;
-        if( rating >= 9){
-            text = "TOPZERA";
-        } else if ( rating <= 8.9 && rating >= 8.6 ){
-            text = "TOP";
-        } else {
-            text = "BONZÃO";
-        }
+        String text = "SHOW";
+        // if( rating >= 9){
+        //     text = "TOPZERA";
+        // } else if ( rating <= 8.9 && rating >= 8.6 ){
+        //     text = "TOP";
+        // } else {
+        //     text = "BONZÃO";
+        // }
 
         int textWidth = graphics.getFontMetrics().stringWidth(text);
         int center = width/2 -  textWidth/2;
