@@ -9,6 +9,45 @@ import javax.imageio.ImageIO;
 
 public class StickerGenerator {
 
+    public void generate(InputStream inputStream, String title, Double rating) throws IOException {
+
+        // leitura da imagem original
+        // InputStream lendo de um arquivo
+        // InputStream inputStream = new FileInputStream(new
+        // File("./entrada/filme.jpg"));
+        // InputStream lendo de uma URL
+        // InputStream inputStream = new
+        // URL("https://m.media-amazon.com/images/M/MV5BMGEzN2VkMmUtMGM1Zi00Y2U1LTlkMDktMTlhMTdmYzZmZDlhXkEyXkFqcGdeQXVyODEyNjEwMDk@.jpg")
+        // .openStream(); //openStream, tipo "abra essa conexão e me retorne os bytes
+        // que estão lá"
+        BufferedImage originalImage = readImageFromInputstream(inputStream);
+
+        // cria nova imagem com transparencia em memoria
+        int width = originalImage.getWidth();
+        int height = originalImage.getHeight();
+        int newHeight = height + 300;
+        BufferedImage transparentImage = generateTransparentImage(originalImage, width, newHeight);
+
+        // copia a imagem original para a nova imagem (em memoria)
+        Graphics2D graphics = addOriginalImagetoTransparentImage(originalImage, transparentImage);
+
+        // escreve frase na nova imagem
+        String text = "SHOW";
+        if (rating >= 9) {
+            text = "TOPZERA";
+        } else if (rating <= 8.9 && rating >= 8.6) {
+            text = "TOP";
+        } else {
+            text = "BONZÃO";
+        }
+
+        writeTextToImage(graphics, text, width, newHeight);
+
+        // escreve a nova imagem em um arquivo
+        addImageToOutputFile(title, transparentImage);
+
+    }
+
     public void generate(InputStream inputStream, String title) throws IOException {
 
         BufferedImage originalImage = readImageFromInputstream(inputStream);
